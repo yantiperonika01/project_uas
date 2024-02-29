@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title> <ion-card-title color="light">Kumpulan Data Kesehatan</ion-card-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+ <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content
+    pullingIcon="arrow-dropdown"
+    pullingText="Pull to refresh"
+    refreshingSpinner="circles"
+    refreshingText="Refreshing...">
+  </ion-refresher-content>
+</ion-refresher>
+
+<ion-card *ngFor="let pendaftaran of pendaftarans">
+  <ion-card color="secondary">
+  <ion-card-header>
+    <ion-card-title>{{pendaftaran.id}}</ion-card-title>
+    <ion-card-subtitle>Nama Lengkap: {{pendaftaran.nama_lengkap}}, Tanggal Lahir: {{pendaftaran.tanggal_lahir}}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    Jenis Kelamin: {{pendaftaran.jenis_kelamin}},
+    Alamat: {{pendaftaran.alamat}},
+    No Hp/Wa: {{pendaftaran.no_telp}}
+  </ion-card-content>
+
+  <ion-card-content>
+    email: {{pendaftaran.email}},
+    Riwayat Penyakit: {{pendaftaran.riwayat_penyakit}},
+  </ion-card-content>
+  </ion-card>
+</ion-card>
+
+
+
+<ion-infinite-scroll  (ionInfinite)="loadData($event)">
+  <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more data...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
